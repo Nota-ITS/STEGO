@@ -467,13 +467,13 @@ def my_app(cfg: DictConfig) -> None:
     )
 
     if cfg.submitting_to_aml:
-        gpu_args = dict(gpus=1, val_check_interval=250)
+        gpu_args = dict(gpus=2, val_check_interval=250)
 
         if gpu_args["val_check_interval"] > len(train_loader):
             gpu_args.pop("val_check_interval")
 
     else:
-        gpu_args = dict(gpus=-1, accelerator='ddp', val_check_interval=cfg.val_freq)
+        gpu_args = dict(gpus=-1, accelerator='cpu', val_check_interval=cfg.val_freq)
         # gpu_args = dict(gpus=1, accelerator='ddp', val_check_interval=cfg.val_freq)
 
         if gpu_args["val_check_interval"] > len(train_loader) // 4:

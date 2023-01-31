@@ -1,7 +1,7 @@
 from modules import *
 from data import *
 from collections import defaultdict
-from multiprocessing import Pool
+from multiprocessing import Pool, get_context
 import hydra
 import seaborn as sns
 import torch.multiprocessing
@@ -115,7 +115,8 @@ def my_app(cfg: DictConfig) -> None:
         batch_offsets = torch.tensor([n % (cfg.batch_size * 2) for n in all_good_images])
 
         saved_data = defaultdict(list)
-        with Pool(cfg.num_workers + 5) as pool:
+        
+        with get_context('spawn').Pool(cfg.num_workers + 5) as pool:
             for i, batch in enumerate(tqdm(test_loader)):
                 with torch.no_grad():
                     img = batch["img"].cuda()

@@ -528,7 +528,7 @@ class ContrastiveSegDataset(Dataset):
 
         self._set_seed(seed)
         coord_entries = torch.meshgrid([torch.linspace(-1, 1, pack[0].shape[1]),
-                                        torch.linspace(-1, 1, pack[0].shape[2])])
+                                        torch.linspace(-1, 1, pack[0].shape[2])], indexing='ij')
         coord = torch.cat([t.unsqueeze(0) for t in coord_entries], 0)
 
         if self.extra_transform is not None:

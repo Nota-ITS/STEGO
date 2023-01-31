@@ -1,6 +1,6 @@
-output_root: '../'
-pytorch_data_dir: '/datadrive/pytorch-data/'
-experiment_name: "cocostuff"
+output_root: '../../'
+pytorch_data_dir: '../'
+experiment_name: "nota"
 res: 320
 batch_size: 8
 num_workers: 24
@@ -11,6 +11,7 @@ dark_mode: True
 use_ddp: False
 
 model_paths:
+  # - "../models/model_epoch_0720_iter_085000.pth"
   - "../saved_models/cocostuff27_vit_base_5.ckpt"
   #- "../saved_models/cityscapes_vit_base_1.ckpt"
   #- "../saved_models/potsdam_test.ckpt"
